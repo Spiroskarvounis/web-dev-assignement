@@ -1,3 +1,50 @@
 /* BEGIN CODE HERE */
+/* frame 1 */
+.container-fluid{
+    height: 150px;
+}
+.d-flex{
+    margin-right: 100px;
+}
+.logo{
+    margin-left:100px;
+}
+.container {
+    margin-top:50px;
+    width: 1200px;
+    height: 400px;
+}
 
+
+/* .col{
+    width: 600px;
+    height: 400px;
+} */
+/* frame 2 */
+.double_frames{
+    background: red;
+    width: 300px;
+    height: 200px;
+}
+
+.row2{
+    width: 300px;
+    height: 200px;
+}
+
+#id1{
+    width: 600px;
+    height: 400px;
+}
+
+#id2{
+    width: 300px;
+    height: 400px;
+}
+#id3{
+    width: 300px;
+    height: 200px;
+}
 /* END CODE HERE */
+
+
