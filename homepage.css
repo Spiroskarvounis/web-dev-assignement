@@ -1,16 +1,19 @@
 /* BEGIN CODE HERE */
 /* frame 1 */
 
-/* .container-fluid{
-    height: 150px;
-} */
 
-/* .d-flex{
-    margin-right: 100px;
+.container-fluid{
+
+    /* background-color: black; */
+    height: 150px;
+} 
+
+.d-flex{
+    margin-right: 46px;
 }
 .logo{
-    margin-left:100px;
-} */
+    margin-left:50px;
+}
 /* .container {
     background-color: red;
     display: flex;
