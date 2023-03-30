@@ -3,13 +3,12 @@
 
 
 .container-fluid{
-
     /* background-color: black; */
     height: 150px;
 } 
 
 .d-flex{
-    margin-right: 46px;
+    margin-right: 50px;
 }
 .logo{
     margin-left:50px;
