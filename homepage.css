@@ -31,6 +31,33 @@
     width: 300px;
     height: 200px;
 }
+#right{
+    width: 300px;
+    height: 200px;
+    text-align: right;
+    
+}
+.bottom{
+    position: relative;
+    height:25px;
+    top:175px;
+    /* border: solid 3px #78e382;; */
+}
+#left{
+
+    width: 300px;
+    height: 200px;
+    text-align: left;
+    
+}
+.center{
+    position: relative;
+    height:25px;
+    top:100px;
+    /* border: solid 3px #78e382; */
+
+}
+
 
 #id1{
     width: 600px;
