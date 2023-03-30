@@ -1,50 +1,60 @@
 /* BEGIN CODE HERE */
 /* frame 1 */
-.container-fluid{
+
+/* .container-fluid{
     height: 150px;
-}
-.d-flex{
+} */
+
+/* .d-flex{
     margin-right: 100px;
 }
 .logo{
     margin-left:100px;
-}
-.container {
+} */
+/* .container {
+    background-color: red;
+    display: flex;
     margin-top:50px;
     width: 1200px;
     height: 400px;
-}
-
-
-/* .col{
-    width: 600px;
-    height: 400px;
 } */
-/* frame 2 */
-.double_frames{
-    background: red;
-    width: 300px;
-    height: 200px;
+
+/* Και τα 3 frames μαζί με το navbar έβαλα να έχουν ίδια margin πάνω-κάτω 
+   μεταξύ τους βάσει του logo margin που υπολογίσαμε */
+.container-md{
+    /* background-color: red; */
+    margin-top: 46px;
+    margin-bottom: 46px;
 }
 
-.row2{
-    width: 300px;
-    height: 200px;
+/* #right{
+    text-align: right;
+    
+} */
+
+/* Κλάση για το 4ο column με τα lorem ipsum  */
+.bottom{
+    position: relative;
+    height:25px;
+    top:175px;
+    right:0px;
+    /* border: solid 3px #78e382;; */
 }
 
-#id1{
-    width: 600px;
-    height: 400px;
-}
+/* #left{
 
-#id2{
-    width: 300px;
-    height: 400px;
-}
-#id3{
     width: 300px;
     height: 200px;
+    text-align: left;
+    
+} */
+
+/* Για το lorem ipsum dolor του 2ου frame 4η στήλη-2η γραμμή */
+.center{
+    position: relative;
+    height:25px;
+    top:90px;
+    /* border: solid 3px #78e382; */
+
 }
 /* END CODE HERE */
-
-
