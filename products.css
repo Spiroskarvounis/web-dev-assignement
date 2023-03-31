@@ -1,3 +1,28 @@
 /* BEGIN CODE HERE */
+  /* Η κλάση αυτή αναφέρεται στα frames όπως και στο homepage.html και δίνει κενά πάνω και κάτω */
+
+.container-md{
+    /* background-color: red; */
+    margin-top: 46px;
+    margin-bottom: 46px;
+}
+
+/* Η κλάση αυτή αναφαίρεται στο Add products label πάνω από το form και με το margin-bottom: 30px;
+    δίνω απόσταση από το πάνω frame */
+
+.h3_tag
+{
+    margin-bottom: 30px;
+}
+
+/* Στις γραμμές των label - input textfields εκανα κοινή κλάση για όλες ώστε να αφήνει ομοιόμορφα κενά
+   πάνω και κάτω */
+
+.form-group
+{
+    margin-top: 25px;
+    margin-bottom: 25px; 
+    /* background-color: black; */
+}
 
 /* END CODE HERE */

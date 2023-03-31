@@ -5,6 +5,10 @@
 .container-fluid{
     /* background-color: black; */
     height: 150px;
+
+    /* Η γραμμή αυτή εισάγει την γκρι γραμμή που διαχωρίζει header-footer με το υπολοιπο page */
+    /* Το ιδιο θέλουμε και για το products καρβουνης */
+    border-bottom: 1px solid lightgray;
 } 
 
 .d-flex{
