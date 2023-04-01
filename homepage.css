@@ -1,5 +1,5 @@
 /* BEGIN CODE HERE */
-/* frame 1 */
+/* FRAME 1 CSS */
 
 
 .container-fluid{
@@ -17,6 +17,11 @@
 .logo{
     margin-left:50px;
 }
+
+
+/* END FRAME 1 CSS */
+
+
 /* .container {
     background-color: red;
     display: flex;
@@ -24,6 +29,10 @@
     width: 1200px;
     height: 400px;
 } */
+
+
+/* FRAME 2 CSS */
+
 
 /* Και τα 3 frames μαζί με το navbar έβαλα να έχουν ίδια margin πάνω-κάτω 
    μεταξύ τους βάσει του logo margin που υπολογίσαμε */
@@ -63,4 +72,29 @@
     /* border: solid 3px #78e382; */
 
 }
+
+
+/* END FRAME 2 CSS */
+/* FRAME 3 CSS  */
+
+
+.iframe1{
+    height: 400px;
+    width: 1200px;
+    
+}
+/* END FRAME 3 CSS */
+
+/* .footerFrame1-2{
+    height:100px;
+    background-color:  red;
+    text-align: center;
+
+}  */
+/* FOOTER CSS */
+.card-body{
+    height: 100px;
+    text-align: center;
+}
+/* END FOOTER CSS */
 /* END CODE HERE */
