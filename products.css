@@ -17,6 +17,23 @@
     margin-left:50px;
 } 
 /* END HEADER CSS */
+
+/* FIRST FRAME*/
+
+#id1{
+    position:relative;
+    margin-top: 20px;
+    width: 1200px;
+}
+
+#id2{
+    margin-top: 40px;
+    position: relative;
+    width: 1200px;
+}
+/* END OF FIRST FRAME*/
+
+
 .container-md{
     /* background-color: red; */
     margin-top: 46px;
