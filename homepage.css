@@ -1,11 +1,9 @@
 /* BEGIN CODE HERE */
-/* FRAME 1 CSS */
 
+/* HEADER CSS */
 
 .container-fluid{
-    /* background-color: black; */
     height: 150px;
-
     /* Η γραμμή αυτή εισάγει την γκρι γραμμή που διαχωρίζει header-footer με το υπολοιπο page */
     /* Το ιδιο θέλουμε και για το products καρβουνης */
     border-bottom: 1px solid lightgray;
@@ -14,21 +12,12 @@
 .d-flex{
     margin-right: 50px;
 }
+
 .logo{
     margin-left:50px;
 }
 
-
-/* END FRAME 1 CSS */
-
-
-/* .container {
-    background-color: red;
-    display: flex;
-    margin-top:50px;
-    width: 1200px;
-    height: 400px;
-} */
+/* END HEADER CSS */
 
 
 /* FRAME 2 CSS */
@@ -37,15 +26,9 @@
 /* Και τα 3 frames μαζί με το navbar έβαλα να έχουν ίδια margin πάνω-κάτω 
    μεταξύ τους βάσει του logo margin που υπολογίσαμε */
 .container-md{
-    /* background-color: red; */
     margin-top: 46px;
     margin-bottom: 46px;
 }
-
-/* #right{
-    text-align: right;
-    
-} */
 
 /* Κλάση για το 4ο column με τα lorem ipsum  */
 .bottom{
@@ -53,48 +36,30 @@
     height:25px;
     top:175px;
     right:0px;
-    /* border: solid 3px #78e382;; */
 }
-
-/* #left{
-
-    width: 300px;
-    height: 200px;
-    text-align: left;
-    
-} */
 
 /* Για το lorem ipsum dolor του 2ου frame 4η στήλη-2η γραμμή */
 .center{
     position: relative;
     height:25px;
     top:90px;
-    /* border: solid 3px #78e382; */
-
 }
 
-
 /* END FRAME 2 CSS */
+
 /* FRAME 3 CSS  */
 
 
 .iframe1{
-    height: 400px;
-    width: 1200px;
-    
+    max-width: 1200px;    
 }
 /* END FRAME 3 CSS */
 
-/* .footerFrame1-2{
-    height:100px;
-    background-color:  red;
-    text-align: center;
-
-}  */
 /* FOOTER CSS */
 .card-body{
     height: 100px;
     text-align: center;
 }
 /* END FOOTER CSS */
+
 /* END CODE HERE */

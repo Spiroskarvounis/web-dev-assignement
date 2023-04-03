@@ -1,10 +1,7 @@
 /* BEGIN CODE HERE */
-  /* Η κλάση αυτή αναφέρεται στα frames όπως και στο homepage.html και δίνει κενά πάνω και κάτω */
   /* HEADER CSS */
   .container-fluid{
-    /* background-color: black; */
     height: 150px;
-
     /* Η γραμμή αυτή εισάγει την γκρι γραμμή που διαχωρίζει header-footer με το υπολοιπο page */
     /* Το ιδιο θέλουμε και για το products καρβουνης */
     border-bottom: 1px solid lightgray;
@@ -16,6 +13,7 @@
 .logo{
     margin-left:50px;
 } 
+
 /* END HEADER CSS */
 
 /* FIRST FRAME*/
@@ -23,19 +21,18 @@
 #id1{
     position:relative;
     margin-top: 20px;
-    width: 1200px;
+    max-width: 1200px;
 }
 
 #id2{
     margin-top: 40px;
     position: relative;
-    width: 1200px;
+    max-width: 1200px;
 }
 /* END OF FIRST FRAME*/
 
 
 .container-md{
-    /* background-color: red; */
     margin-top: 46px;
     margin-bottom: 46px;
 }
@@ -55,14 +52,15 @@
 {
     margin-top: 25px;
     margin-bottom: 25px; 
-    /* background-color: black; */
 }
 
 /* FOOTER CSS */
+
 .card-body{
     height: 100px;
     text-align: center;
 }
+
 /* END FOOTER CSS */
 
 /* END CODE HERE */
