@@ -50,7 +50,7 @@ def add_product():
         product = {
             'name': request.json['name'],
             'production_year': int(request.json['production_year']),
-            'price': float(request.json['price']),
+            'price': int(request.json['price']),
             'color': int(request.json['color']),
             'size': int(request.json['size'])
         }
@@ -62,6 +62,13 @@ def add_product():
     for prod in product.values():
         if prod == "":
             return "Συμπλήρωσε τα όπως πρέπει"
+
+    if product['color'] != 1 and product['color'] != 2 and product['color'] != 3 :
+        return "Το χρώμα πρέπει να είναι \n 1: κόκκινο \n 2: κίτρινο \n 3: μπλε"
+
+    if product['size'] != 1 and product['size'] != 2 and product['size'] != 3 and product['size'] != 4:
+        return "Το μέγεθος πρέπει να είναι \n 1: small \n 2: medium \n 3: large \n 4: extra large"
+
 
     
     # Search στη βάση ώστε να διαπιστωθεί αν υπάρχει προιόν με ακριβώς το ίδιο όνομα.
@@ -82,34 +89,119 @@ def add_product():
 def content_based_filtering():
     # BEGIN CODE HERE
 
-    # request json αρχείο με το προιόν που θα αναζητηθεί
+    categories_color = [1,2,3]
+    categories_size = [1,2,3,4]
+
     query_product = request.json
+
+    # Έλεγχος ώστε να είναι η χρονια παραγωγής που δίνεται ως input 4ψηφιος αριθμος ("όρος κανονικοποίησης")
+    if query_product["production_year"] > 9999  or query_product["production_year"] < 1000:
+        return "Invalid Production Year Input"
+
+     # Έλεγχος ώστε να είναι η τιμή που δίνεται ως input 4ψηφιος αριθμος το πολύ("όρος κανονικοποίησης")
+    if query_product["price"] > 9999:
+        return "Invalid Price Input"
 
     # Καθαρίζουμε τις περιττές τιμές όπως το όνομα και το id 
     # και κρατάμε μόνο αυτές που μας ενδιαφέρουν
-    similarities = []
-    query_product = [query_product["production_year"], query_product["price"],
-                    query_product["color"], query_product["size"]]
+    # ενω πρώτα εφαρμόζουμε one_hot_encoder: χρώμα ένα [0,0,1], δυο [0,1,0] τρία [1,0,0] και αντίστοιχα για το size
+    encoded_vector_for_color = [0] * len(categories_color)
+    for i in range(len(categories_color)):
+        if query_product['color'] == categories_color[i]:
+            encoded_vector_for_color[i] = 1
+            break
+
+    encoded_vector_for_size = [0] * len(categories_size)
+    for i in range(len(categories_size)):
+        if query_product['size'] == categories_size[i]:
+            encoded_vector_for_size[i] = 1
+            break
     
+    bin_prod_year = list(bin(query_product["production_year"]))[2:]
+
+    production_year = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]  # "Κανονικοποίηση" της χρονίας παραγωγής σε έναν "δυαδικό αριθμό" 16 ψηφίων
+    count = 0
+    for i in bin_prod_year:
+        production_year[count] = int(i)
+        count += 1
+    
+    bin_price = list(bin(query_product["price"]))[2:]
+    price = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    count = 0
+    for i in bin_price:
+        price[count] = int(i)
+        count += 1
+
+
+    query_product = {
+        'production_year': production_year,
+        'price': price,
+        'color': encoded_vector_for_color,
+        'size': encoded_vector_for_size
+    }
+
+    similarities = []
+
     # Για κάθε προιόν της βάσης:
     for product in mongo.db.products.find():
-        if product == query_product: # Αν το προιόν είναι το ίδιο με του input δε κάνει τίποτα.
+        if product == query_product: # Αν το προιόν είναι το ίδιο με του input δεν κάνει τίποτα.
             continue
         
-        product_vector = [product["production_year"], product["price"],
-                         product["color"], product["size"]]
+    #   Υλοποίηση ενός  one_hot_encoder για το χρωμα και για το μεγεθος
+    #   Αυτό το χρησιμοποιήσαμε διότι το content based filtering δίχως αυτό θεωρούσε πάντα τις τιμές του χρώματος και του μεγέθους κοντινές
+    #   οπότε με το δοθέν threshold 70% πολλά προιοόντα που δε θα έπρεπε έβγαιναν παρόμοια.
+        encoded_vector_for_color = [0] * len(categories_color)
+        for i in range(len(categories_color)):
+            if product['color'] == categories_color[i]:
+                encoded_vector_for_color[i] = 1
+                break
 
-        # Εδώ υπολογίζουμε την ομοιότητα συνημιτόνου σύμφωνα με τις διαφάνειες
-        dot_product = sum(query_product[i] * product_vector[i] for i in range(len(query_product)))
-        magnitude_v1 = math.sqrt(sum(query_product[i] ** 2 for i in range(len(query_product))))
-        magnitude_v2 = math.sqrt(sum(product_vector[i] ** 2 for i in range(len(product_vector))))
+        encoded_vector_for_size = [0] * len(categories_size)
+        for i in range(len(categories_size)):
+            if product['size'] == categories_size[i]:
+                encoded_vector_for_size[i] = 1
+                break
+            
+        bin_prod_year = list(bin(product["production_year"]))[2:]
+        production_year = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        count = 0
+        for i in bin_prod_year:
+            production_year[count] = int(i)
+            count += 1
+
+        bin_price = list(bin(product["price"]))[2:]
+        price = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        count = 0
+        for i in bin_prod_year:
+            price[count] = int(i)
+            count += 1
+        product_vector = {
+            'production_year': production_year,
+            'price': price,
+            'color': encoded_vector_for_color,
+            'size': encoded_vector_for_size
+        }
+        
+        dot_product = 0
+        magnitude_v1 = 0
+        magnitude_v2 = 0
+        
+        for key in query_product:
+            
+            if isinstance(query_product[key], list) and isinstance(product_vector[key], list):
+                dot_product += sum(query_product[key][i] * product_vector[key][i] for i in range(len(query_product[key])))
+                magnitude_v1 += sum(query_product[key][i] ** 2 for i in range(len(query_product[key])))
+                magnitude_v2 += sum(product_vector[key][i] ** 2 for i in range(len(product_vector[key])))
+
+        magnitude_v1 = math.sqrt(magnitude_v1)
+        magnitude_v2 = math.sqrt(magnitude_v2)
+        
         if magnitude_v1 == 0 or magnitude_v2 == 0:
             similarity = 0
         else:
-            similarity =  dot_product / (magnitude_v1 * magnitude_v2)
-        if similarity > 0.7:     # end of cosine similarity computarion 
+            similarity = dot_product / (magnitude_v1 * magnitude_v2)
+        if similarity > 0.7:
             similarities.append((product["name"], similarity))
-    
     return jsonify([product[0] for product in similarities])
     # END CODE HERE
 
